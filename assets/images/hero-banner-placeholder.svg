@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hero Banner Placeholder</title>
+  <desc id="desc">Placeholder banner art for The Last Stronghold.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#17161e" />
+      <stop offset="55%" stop-color="#0d1018" />
+      <stop offset="100%" stop-color="#24170f" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="1180" cy="240" r="160" fill="#cba96f" opacity="0.18" />
+  <path d="M0 740 L220 650 L360 700 L560 580 L760 655 L960 520 L1200 620 L1380 560 L1600 660 L1600 900 L0 900 Z" fill="#0b0d14" />
+  <path d="M210 760 L300 540 L410 760 Z" fill="#2d313e" />
+  <path d="M300 540 L300 420 L360 420 L360 760 Z" fill="#1f2230" />
+  <path d="M980 770 L1090 470 L1210 770 Z" fill="#2d313e" />
+  <path d="M1090 470 L1090 340 L1160 340 L1160 770 Z" fill="#1f2230" />
+  <text x="120" y="180" fill="#f3efe4" font-family="Georgia, serif" font-size="74" letter-spacing="5">THE LAST STRONGHOLD</text>
+  <text x="120" y="255" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="30">Replace with your real hero banner image</text>
+</svg>

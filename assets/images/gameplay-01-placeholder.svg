@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Gameplay Screenshot Placeholder</title>
+  <desc id="desc">Placeholder image for gameplay screenshot.</desc>
+  <rect width="1200" height="760" fill="#11131b" />
+  <rect x="40" y="40" width="1120" height="680" rx="26" fill="#1b2130" stroke="#cba96f" stroke-opacity="0.35" />
+  <rect x="110" y="140" width="280" height="150" rx="18" fill="#2c3345" />
+  <rect x="440" y="110" width="600" height="280" rx="20" fill="#232a39" />
+  <rect x="110" y="350" width="930" height="260" rx="20" fill="#161c27" />
+  <text x="110" y="95" fill="#f3efe4" font-family="Georgia, serif" font-size="44">Gameplay Screenshot</text>
+  <text x="110" y="665" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="26">Replace with a real in-game screenshot</text>
+</svg>

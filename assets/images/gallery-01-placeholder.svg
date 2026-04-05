@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Gallery Placeholder One</title>
+  <desc id="desc">Placeholder gallery image.</desc>
+  <rect width="1200" height="760" fill="#10121a" />
+  <rect x="75" y="75" width="1050" height="610" rx="28" fill="#1b2130" stroke="#cba96f" stroke-opacity="0.26" />
+  <path d="M180 580 L360 360 L500 490 L650 250 L860 560 Z" fill="#2b3242" />
+  <circle cx="850" cy="230" r="70" fill="#cba96f" opacity="0.18" />
+  <text x="120" y="145" fill="#f3efe4" font-family="Georgia, serif" font-size="44">Additional Gallery Item</text>
+  <text x="120" y="635" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="26">Replace with another screenshot or promo asset</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Gameplay Video Placeholder</title>
+  <desc id="desc">Placeholder card image for gameplay video.</desc>
+  <rect width="1200" height="760" fill="#101117" />
+  <rect x="50" y="50" width="1100" height="660" rx="28" fill="#171b26" stroke="#cba96f" stroke-opacity="0.3" />
+  <circle cx="600" cy="380" r="108" fill="#cba96f" opacity="0.2" />
+  <polygon points="565,320 565,440 670,380" fill="#f3efe4" />
+  <text x="120" y="138" fill="#f3efe4" font-family="Georgia, serif" font-size="44">Gameplay Video</text>
+  <text x="120" y="620" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="26">Add your gameplay MP4 in assets/videos</text>
+</svg>

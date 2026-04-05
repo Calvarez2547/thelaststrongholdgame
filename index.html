@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="The Last Stronghold is a third-person action tower defense capstone game with story, media, documentation, and a gated free beta Windows download."
+  >
+  <title>The Last Stronghold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="Primary navigation">
+      <a class="brand" href="#home">The Last Stronghold</a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        aria-label="Open navigation menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#story">Story</a>
+        <a class="nav-link" href="#documentation">Documentation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+    <!-- Home section -->
+    <section class="hero-section section" id="home">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Third-Person Action Tower Defense</p>
+          <!-- Swap this file later if you want to replace the current title artwork -->
+          <img
+            src="assets/images/Game%20Title.png"
+            alt="The Last Stronghold title artwork"
+            class="hero-title-art"
+          >
+          <h1 class="sr-only">The Last Stronghold</h1>
+          <p class="hero-subtitle">Free beta release / School capstone project / Windows download</p>
+          <p class="hero-description">
+            The Last Stronghold is a dark fantasy third-person action tower defense game where the player must defend
+            a powerful obelisk against relentless enemy waves, hold the line with arcane weapons, and survive long
+            enough to keep the last source of power from falling.
+          </p>
+          <ul class="hero-highlights" aria-label="Game highlights">
+            <li>Free beta build for your capstone showcase</li>
+            <li>Windows desktop download</li>
+            <li>Arcane combat, obelisk defense, and wave survival</li>
+          </ul>
+          <div class="hero-actions">
+            <button class="button button-primary" id="openDownloadModal" type="button">
+              Download Free Beta
+            </button>
+            <a class="button button-secondary" href="#story">Explore Story</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-showcase card">
+            <!-- Main hero background image -->
+            <img
+              src="assets/images/Menu%20Background.png"
+              alt="The Last Stronghold main menu background"
+              class="hero-main-image"
+            >
+            <div class="hero-showcase-panel">
+              <!-- Poster-style image used in the hero section -->
+              <img
+                src="assets/images/GamePoster.png"
+                alt="The Last Stronghold poster artwork"
+                class="hero-poster-image"
+              >
+              <div class="hero-showcase-copy">
+                <p class="eyebrow">Featured Visuals</p>
+                <h2>Hold the line against the corruption</h2>
+                <p>
+                  Built as a capstone project, the game blends fantasy atmosphere, defensive strategy,
+                  and direct third-person action around a single powerful objective.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card card">
+            <div class="card-header">
+              <div>
+                <h2>Official Trailer</h2>
+                <p>Replace the placeholder video path when your final trailer file is ready.</p>
+              </div>
+              <button class="button button-small button-secondary" id="soundToggle" type="button">
+                Unmute Trailer
+              </button>
+            </div>
+
+            <!-- Replace the MP4 file below when you add a real trailer video to assets/videos -->
+            <div class="video-shell">
+              <video
+                id="trailerVideo"
+                class="media-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="assets/images/Menu%20Background.png"
+              >
+                <source src="assets/videos/trailer-placeholder.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+              </video>
+              <div class="media-placeholder-note" id="trailerFallback" hidden>
+                Add your real trailer at <code>assets/videos/trailer-placeholder.mp4</code> or update the source in
+                <code>index.html</code>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download section -->
+    <section class="download-section section">
+      <div class="container download-layout">
+        <article class="card download-intro-card">
+          <p class="eyebrow">Beta Access</p>
+          <h2>Download the Free Beta</h2>
+          <p>
+            Complete the required form to unlock the beta download. The backend validates the form, checks age
+            requirements, stores the submission securely, and then returns the Windows download link.
+          </p>
+          <ul class="download-notes">
+            <li>Free beta build</li>
+            <li>Windows only</li>
+            <li>Mature self-rated content</li>
+            <li>Download unlocks after valid form submission</li>
+          </ul>
+          <button class="button button-primary" id="openDownloadModalSecondary" type="button">
+            Open Download Form
+          </button>
+        </article>
+
+        <aside class="card download-preview-card">
+          <!-- This image can be swapped later if you want a different artifact or gameplay visual -->
+          <img
+            src="assets/images/Obelisk%20Black.png"
+            alt="The obelisk artifact from The Last Stronghold"
+            class="download-preview-image"
+          >
+          <div class="download-preview-copy">
+            <h3>Defend the obelisk</h3>
+            <p>
+              The Last Stronghold centers on protecting a powerful arcane structure as waves of enemies close in.
+              Use movement, positioning, and defensive tools to survive the siege.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Story section -->
+    <section class="story-section section" id="story">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Story</p>
+          <h2>The Last Beacon in a Broken World</h2>
+          <p>
+            Explore the story premise, game world, and visual identity behind The Last Stronghold through a focused
+            set of media sections built for a clean capstone presentation.
+          </p>
+        </div>
+
+        <article class="card story-overview-card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Story Overview</p>
+              <h3>Three Acts of Resistance, Corruption, and Survival</h3>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p>
+              Based on the uploaded story document, The Last Stronghold frames its conflict around a final defense
+              against a spreading darkness. The setting carries a sense of collapse, corrupted power, and mounting
+              pressure as the last safe point comes under threat.
+            </p>
+            <p>
+              The player enters that struggle as a guardian figure standing between the obelisk and the enemy waves,
+              fighting to preserve the stronghold while the danger escalates across the campaign.
+            </p>
+            <p>
+              The overall arc supports a dramatic capstone tone: a desperate beginning, a growing confrontation,
+              and a last stand built around survival, sacrifice, and control of arcane power.
+            </p>
+          </div>
+        </article>
+
+        <div class="story-subsections">
+          <section class="media-section-block">
+            <div class="section-mini-heading">
+              <p class="eyebrow">Gameplay Screenshots</p>
+              <h3>Combat, menus, and level presentation</h3>
+            </div>
+            <div class="media-grid" id="gameplayGallery"></div>
+          </section>
+
+          <section class="media-section-block">
+            <div class="section-mini-heading">
+              <p class="eyebrow">Gameplay Video</p>
+              <h3>Gameplay showcase</h3>
+            </div>
+            <article class="card media-video-card">
+              <div class="card-header">
+                <div>
+                  <h4>Gameplay Footage Placeholder</h4>
+                  <p>Add a gameplay video file later if you want a second embedded video in this section.</p>
+                </div>
+              </div>
+              <!-- Replace the MP4 file below when you add a real gameplay video to assets/videos -->
+              <div class="video-shell">
+                <video
+                  class="media-video"
+                  controls
+                  muted
+                  playsinline
+                  poster="assets/images/Level%201%20Selection.png"
+                >
+                  <source src="assets/videos/gameplay-placeholder.mp4" type="video/mp4">
+                  Your browser does not support embedded video.
+                </video>
+                <div class="media-placeholder-note">
+                  Add your gameplay video at <code>assets/videos/gameplay-placeholder.mp4</code> or update the path in
+                  <code>index.html</code>.
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section class="media-section-block">
+            <div class="section-mini-heading">
+              <p class="eyebrow">Promotional Art</p>
+              <h3>Feature visuals and key promotional images</h3>
+            </div>
+            <div class="media-grid" id="promoGallery"></div>
+          </section>
+
+          <section class="media-section-block">
+            <div class="section-mini-heading">
+              <p class="eyebrow">Extra Media</p>
+              <h3>Additional visual references</h3>
+            </div>
+            <div class="media-grid" id="extraGallery"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentation section -->
+    <section class="documentation-section section" id="documentation">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Documentation</p>
+          <h2>Capstone Project Files</h2>
+          <p>
+            View and download the supporting files for the project, including the requirements, design,
+            story document, and poster-style presentation assets.
+          </p>
+        </div>
+        <div class="docs-grid" id="docsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <p class="footer-title">The Last Stronghold</p>
+        <p class="footer-copy">Beta school project website for The Last Stronghold.</p>
+      </div>
+      <div class="footer-meta">
+        <a href="#home">Back to top</a>
+        <p>&copy; 2026 The Last Stronghold capstone project.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Download modal -->
+  <div class="modal" id="downloadModal" aria-hidden="true" role="dialog" aria-labelledby="downloadModalTitle">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="closeDownloadModal" type="button" aria-label="Close download form">X</button>
+
+      <div class="modal-header">
+        <p class="eyebrow">Free Beta Access</p>
+        <h2 id="downloadModalTitle">Complete the Download Form</h2>
+        <p>
+          Submit your details to receive the free Windows beta ZIP. This form is required before download access is
+          unlocked, and the mature self-rated beta is limited to users who are 18 or older.
+        </p>
+      </div>
+
+      <!-- These input ids and names are used directly by script.js when building the JSON request -->
+      <form id="downloadForm" class="download-form" novalidate>
+        <label>
+          Full name
+          <input type="text" id="fullName" name="name" autocomplete="name" required>
+        </label>
+
+        <label>
+          Email address
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </label>
+
+        <label>
+          Date of birth
+          <input type="date" id="dob" name="dob" required max="">
+        </label>
+
+        <p class="form-helper-text">You must be at least 18 years old to receive the free beta download link.</p>
+        <p class="form-disclaimer">
+          Free beta build / Windows only / Mature self-rated content / Download unlocks after valid form submission
+        </p>
+
+        <label class="checkbox-field">
+          <input type="checkbox" id="ageVerified" name="ageVerified" required>
+          <span>I confirm that I am at least 18 years old and understand this game contains mature self-rated content.</span>
+        </label>
+
+        <div class="form-actions">
+          <button class="button button-primary" type="submit" id="submitDownloadForm">Submit and Download</button>
+        </div>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

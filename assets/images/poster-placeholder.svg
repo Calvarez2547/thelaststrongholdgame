@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Poster Placeholder</title>
+  <desc id="desc">Placeholder poster image for project documentation.</desc>
+  <defs>
+    <linearGradient id="posterBg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#12141d" />
+      <stop offset="100%" stop-color="#26180f" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#posterBg)" />
+  <circle cx="625" cy="245" r="150" fill="#cba96f" opacity="0.18" />
+  <path d="M190 970 L330 520 L460 970 Z" fill="#252b3a" />
+  <path d="M460 970 L615 390 L735 970 Z" fill="#1c2230" />
+  <text x="94" y="150" fill="#f3efe4" font-family="Georgia, serif" font-size="54">THE LAST STRONGHOLD</text>
+  <text x="94" y="220" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="30">Capstone poster placeholder</text>
+  <text x="94" y="1080" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="28">Replace this image with your final poster</text>
+</svg>

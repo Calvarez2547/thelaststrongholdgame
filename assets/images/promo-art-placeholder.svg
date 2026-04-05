@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Promotional Art Placeholder</title>
+  <desc id="desc">Placeholder promotional art image.</desc>
+  <defs>
+    <linearGradient id="promoBg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#17161c" />
+      <stop offset="100%" stop-color="#2d1d11" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#promoBg)" />
+  <circle cx="790" cy="270" r="165" fill="#cba96f" opacity="0.16" />
+  <path d="M330 630 Q440 220 630 620" stroke="#f3efe4" stroke-opacity="0.18" stroke-width="28" fill="none" />
+  <path d="M650 620 Q760 160 930 620" stroke="#cba96f" stroke-opacity="0.22" stroke-width="28" fill="none" />
+  <text x="90" y="130" fill="#f3efe4" font-family="Georgia, serif" font-size="46">Promotional Art</text>
+  <text x="90" y="190" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="26">Replace with key art, cover art, or promotional imagery</text>
+</svg>

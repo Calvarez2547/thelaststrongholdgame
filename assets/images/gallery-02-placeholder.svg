@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Gallery Placeholder Two</title>
+  <desc id="desc">Second placeholder gallery image.</desc>
+  <rect width="1200" height="760" fill="#0f1118" />
+  <rect x="70" y="70" width="1060" height="620" rx="28" fill="#171c28" stroke="#cba96f" stroke-opacity="0.3" />
+  <rect x="140" y="160" width="300" height="340" rx="24" fill="#2a3040" />
+  <rect x="500" y="160" width="480" height="140" rx="24" fill="#212737" />
+  <rect x="500" y="330" width="480" height="170" rx="24" fill="#1a1f2d" />
+  <text x="140" y="585" fill="#f3efe4" font-family="Georgia, serif" font-size="44">Media Slot Two</text>
+  <text x="140" y="640" fill="#c7c0b2" font-family="Arial, sans-serif" font-size="26">Replace with your own image asset later</text>
+</svg>
