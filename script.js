@@ -134,16 +134,15 @@ const navLinks = document.querySelectorAll(".nav-link");
 const trailerVideo = document.getElementById("trailerVideo");
 const trailerFallback = document.getElementById("trailerFallback");
 const soundToggle = document.getElementById("soundToggle");
-const downloadModal = document.getElementById("downloadModal");
-const openDownloadModal = document.getElementById("openDownloadModal");
-const openDownloadModalSecondary = document.getElementById("openDownloadModalSecondary");
-const closeDownloadModal = document.getElementById("closeDownloadModal");
-const downloadForm = document.getElementById("downloadForm");
+const waitlistModal = document.getElementById("waitlistModal");
+const openWaitlistModal = document.getElementById("openWaitlistModal");
+const openWaitlistModalSecondary = document.getElementById("openWaitlistModalSecondary");
+const closeWaitlistModal = document.getElementById("closeWaitlistModal");
+const waitlistForm = document.getElementById("waitlistForm");
 const formStatus = document.getElementById("formStatus");
-const submitButton = document.getElementById("submitDownloadForm");
-const dobInput = document.getElementById("dob");
-const ageVerifiedInput = document.getElementById("ageVerified");
-const submitButtonDefaultText = submitButton ? submitButton.textContent : "Submit and Download";
+const submitButton = document.getElementById("submitWaitlistForm");
+const waitlistConsentInput = document.getElementById("waitlistConsent");
+const submitButtonDefaultText = submitButton ? submitButton.textContent : "Join Waitlist";
 
 function safePath(path) {
   // Encodes spaces safely so files like "Game Title.png" still work in the browser.
@@ -210,12 +209,6 @@ function renderDocumentation() {
     .join("");
 }
 
-function setMaxDobToToday() {
-  // Prevent future dates from being selected in the browser UI.
-  const today = new Date().toISOString().split("T")[0];
-  dobInput.max = today;
-}
-
 function closeMenu() {
   navMenu.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
@@ -248,16 +241,16 @@ function updateActiveNav() {
 }
 
 function openModal() {
-  downloadModal.classList.add("is-open");
-  downloadModal.setAttribute("aria-hidden", "false");
+  waitlistModal.classList.add("is-open");
+  waitlistModal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   formStatus.textContent = "";
   document.getElementById("fullName").focus();
 }
 
 function closeModal() {
-  downloadModal.classList.remove("is-open");
-  downloadModal.setAttribute("aria-hidden", "true");
+  waitlistModal.classList.remove("is-open");
+  waitlistModal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
@@ -270,33 +263,12 @@ function setStatus(message, state = "") {
   }
 }
 
-function calculateAge(dateString) {
-  const dob = new Date(`${dateString}T00:00:00`);
-
-  if (Number.isNaN(dob.getTime())) {
-    return NaN;
-  }
-
-  const today = new Date();
-  let age = today.getFullYear() - dob.getFullYear();
-  const birthdayHasPassed =
-    today.getMonth() > dob.getMonth() ||
-    (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
-
-  if (!birthdayHasPassed) {
-    age -= 1;
-  }
-
-  return age;
-}
-
-function validateDownloadForm(formData) {
+function validateWaitlistForm(formData) {
   const name = formData.get("name").toString().trim();
   const email = formData.get("email").toString().trim();
-  const dob = formData.get("dob").toString();
-  const ageVerified = formData.get("ageVerified") === "on";
+  const waitlistConsent = formData.get("waitlistConsent") === "on";
 
-  if (!name || !email || !dob) {
+  if (!name || !email) {
     return "Please complete all required fields.";
   }
 
@@ -306,24 +278,14 @@ function validateDownloadForm(formData) {
     return "Please enter a valid email address.";
   }
 
-  const age = calculateAge(dob);
-
-  if (Number.isNaN(age)) {
-    return "Please provide a valid date of birth.";
-  }
-
-  if (age < 18) {
-    return "You must be at least 18 years old to download this beta.";
-  }
-
-  if (!ageVerified) {
-    return "Please confirm that you are at least 18 years old.";
+  if (!waitlistConsent) {
+    return "Please confirm that you want to join the waitlist.";
   }
 
   return "";
 }
 
-async function handleDownloadSubmit(event) {
+async function handleWaitlistSubmit(event) {
   event.preventDefault();
 
   // Stop accidental double-click submits while the current request is still running.
@@ -331,8 +293,8 @@ async function handleDownloadSubmit(event) {
     return;
   }
 
-  const formData = new FormData(downloadForm);
-  const validationMessage = validateDownloadForm(formData);
+  const formData = new FormData(waitlistForm);
+  const validationMessage = validateWaitlistForm(formData);
 
   if (validationMessage) {
     setStatus(validationMessage, "error");
@@ -340,20 +302,17 @@ async function handleDownloadSubmit(event) {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "Preparing Download...";
-  setStatus("Checking your details and preparing the beta download...", "");
+  submitButton.textContent = "Saving Your Spot...";
+  setStatus("Saving your waitlist signup...", "");
 
-  // This is the exact JSON body sent to the Cloudflare Pages Function.
   const payload = {
     name: formData.get("name").toString().trim(),
     email: formData.get("email").toString().trim(),
-    dob: formData.get("dob").toString(),
-    ageVerified: formData.get("ageVerified") === "on"
+    waitlistConsent: formData.get("waitlistConsent") === "on"
   };
 
   try {
-    // The frontend validates first for usability, then the backend validates again for security.
-    const response = await fetch("/api/download", {
+    const response = await fetch("/api/waitlist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -364,20 +323,11 @@ async function handleDownloadSubmit(event) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.error || "The download request could not be completed.");
+      throw new Error(result.error || "The waitlist request could not be completed.");
     }
 
-    // If the backend approves the form, start the file download immediately.
-    setStatus("Success. Your free beta download is starting now.", "success");
-
-    const downloadLink = document.createElement("a");
-    downloadLink.href = result.downloadUrl;
-    downloadLink.download = "";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    downloadLink.remove();
-
-    downloadForm.reset();
+    setStatus("You're on the waitlist. We'll keep you posted.", "success");
+    waitlistForm.reset();
 
     window.setTimeout(() => {
       closeModal();
@@ -409,13 +359,13 @@ function setupTrailer() {
 }
 
 function setupModal() {
-  openDownloadModal.addEventListener("click", openModal);
-  if (openDownloadModalSecondary) {
-    openDownloadModalSecondary.addEventListener("click", openModal);
+  openWaitlistModal.addEventListener("click", openModal);
+  if (openWaitlistModalSecondary) {
+    openWaitlistModalSecondary.addEventListener("click", openModal);
   }
-  closeDownloadModal.addEventListener("click", closeModal);
+  closeWaitlistModal.addEventListener("click", closeModal);
 
-  downloadModal.addEventListener("click", (event) => {
+  waitlistModal.addEventListener("click", (event) => {
     const target = event.target;
 
     if (target instanceof HTMLElement && target.dataset.closeModal === "true") {
@@ -424,7 +374,7 @@ function setupModal() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && downloadModal.classList.contains("is-open")) {
+    if (event.key === "Escape" && waitlistModal.classList.contains("is-open")) {
       closeModal();
     }
   });
@@ -450,7 +400,7 @@ function setupNavigation() {
 
 function init() {
   // Exit early if the page structure is incomplete during local edits.
-  if (!gameplayGallery || !promoGallery || !extraGallery || !docsGrid || !downloadForm || !ageVerifiedInput) {
+  if (!gameplayGallery || !promoGallery || !extraGallery || !docsGrid || !waitlistForm || !waitlistConsentInput) {
     return;
   }
 
@@ -458,11 +408,10 @@ function init() {
   renderGallery(promoGallery, promoItems);
   renderGallery(extraGallery, extraItems);
   renderDocumentation();
-  setMaxDobToToday();
   setupTrailer();
   setupModal();
   setupNavigation();
-  downloadForm.addEventListener("submit", handleDownloadSubmit);
+  waitlistForm.addEventListener("submit", handleWaitlistSubmit);
 }
 
 init();

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="The Last Stronghold is a third-person action tower defense capstone game with story, media, documentation, and a gated free beta Windows download."
+    content="The Last Stronghold is a third-person action tower defense capstone game with story, media, documentation, and a beta waitlist signup."
   >
   <title>The Last Stronghold</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,7 @@
       </button>
       <div class="nav-menu" id="navMenu">
         <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#waitlist">Waitlist</a>
         <a class="nav-link" href="#story">Story</a>
         <a class="nav-link" href="#documentation">Documentation</a>
       </div>
@@ -55,20 +56,20 @@
             class="hero-title-art"
           >
           <h1 class="sr-only">The Last Stronghold</h1>
-          <p class="hero-subtitle">Free beta release / School capstone project / Windows download</p>
+          <p class="hero-subtitle">Beta waitlist / School capstone project / Desktop and mobile friendly</p>
           <p class="hero-description">
             The Last Stronghold is a dark fantasy third-person action tower defense game where the player must defend
             a powerful obelisk against relentless enemy waves, hold the line with arcane weapons, and survive long
             enough to keep the last source of power from falling.
           </p>
           <ul class="hero-highlights" aria-label="Game highlights">
-            <li>Free beta build for your capstone showcase</li>
-            <li>Windows desktop download</li>
+            <li>Join the beta waitlist for release updates</li>
+            <li>Follow development progress and showcase milestones</li>
             <li>Arcane combat, obelisk defense, and wave survival</li>
           </ul>
           <div class="hero-actions">
-            <button class="button button-primary" id="openDownloadModal" type="button">
-              Download Free Beta
+            <button class="button button-primary" id="openWaitlistModal" type="button">
+              Join the Waitlist
             </button>
             <a class="button button-secondary" href="#story">Explore Story</a>
           </div>
@@ -135,24 +136,24 @@
       </div>
     </section>
 
-    <!-- Download section -->
-    <section class="download-section section">
+    <!-- Waitlist section -->
+    <section class="download-section section" id="waitlist">
       <div class="container download-layout">
         <article class="card download-intro-card">
-          <p class="eyebrow">Beta Access</p>
-          <h2>Download the Free Beta</h2>
+          <p class="eyebrow">Beta Waitlist</p>
+          <h2>Join the Waitlist</h2>
           <p>
-            Complete the required form to unlock the beta download. The backend validates the form, checks age
-            requirements, stores the submission securely, and then returns the Windows download link.
+            Sign up to hear when the beta is ready, see major project updates, and follow the capstone as it moves
+            toward a playable release.
           </p>
           <ul class="download-notes">
-            <li>Free beta build</li>
-            <li>Windows only</li>
-            <li>Mature self-rated content</li>
-            <li>Download unlocks after valid form submission</li>
+            <li>Simple email signup</li>
+            <li>Beta availability announcements</li>
+            <li>Project milestone updates</li>
+            <li>Built for desktop and mobile browsers</li>
           </ul>
-          <button class="button button-primary" id="openDownloadModalSecondary" type="button">
-            Open Download Form
+          <button class="button button-primary" id="openWaitlistModalSecondary" type="button">
+            Open Signup Form
           </button>
         </article>
 
@@ -164,10 +165,10 @@
             class="download-preview-image"
           >
           <div class="download-preview-copy">
-            <h3>Defend the obelisk</h3>
+            <h3>Stay close to the stronghold</h3>
             <p>
-              The Last Stronghold centers on protecting a powerful arcane structure as waves of enemies close in.
-              Use movement, positioning, and defensive tools to survive the siege.
+              The waitlist keeps interested players connected to new footage, progress updates, and the next step in
+              the game's release journey.
             </p>
           </div>
         </aside>
@@ -299,23 +300,21 @@
     </div>
   </footer>
 
-  <!-- Download modal -->
-  <div class="modal" id="downloadModal" aria-hidden="true" role="dialog" aria-labelledby="downloadModalTitle">
+  <!-- Waitlist modal -->
+  <div class="modal" id="waitlistModal" aria-hidden="true" role="dialog" aria-labelledby="waitlistModalTitle">
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-panel">
-      <button class="modal-close" id="closeDownloadModal" type="button" aria-label="Close download form">X</button>
+      <button class="modal-close" id="closeWaitlistModal" type="button" aria-label="Close waitlist form">X</button>
 
       <div class="modal-header">
-        <p class="eyebrow">Free Beta Access</p>
-        <h2 id="downloadModalTitle">Complete the Download Form</h2>
+        <p class="eyebrow">Beta Waitlist</p>
+        <h2 id="waitlistModalTitle">Join the Waitlist</h2>
         <p>
-          Submit your details to receive the free Windows beta ZIP. This form is required before download access is
-          unlocked, and the mature self-rated beta is limited to users who are 18 or older.
+          Share your name and email to stay in the loop for beta availability, progress updates, and launch news.
         </p>
       </div>
 
-      <!-- These input ids and names are used directly by script.js when building the JSON request -->
-      <form id="downloadForm" class="download-form" novalidate>
+      <form id="waitlistForm" class="download-form" novalidate>
         <label>
           Full name
           <input type="text" id="fullName" name="name" autocomplete="name" required>
@@ -326,23 +325,17 @@
           <input type="email" id="email" name="email" autocomplete="email" required>
         </label>
 
-        <label>
-          Date of birth
-          <input type="date" id="dob" name="dob" required max="">
-        </label>
-
-        <p class="form-helper-text">You must be at least 18 years old to receive the free beta download link.</p>
         <p class="form-disclaimer">
-          Free beta build / Windows only / Mature self-rated content / Download unlocks after valid form submission
+          We’ll only use your information for waitlist updates related to The Last Stronghold.
         </p>
 
         <label class="checkbox-field">
-          <input type="checkbox" id="ageVerified" name="ageVerified" required>
-          <span>I confirm that I am at least 18 years old and understand this game contains mature self-rated content.</span>
+          <input type="checkbox" id="waitlistConsent" name="waitlistConsent" required>
+          <span>I agree to join the waitlist and receive updates about The Last Stronghold.</span>
         </label>
 
         <div class="form-actions">
-          <button class="button button-primary" type="submit" id="submitDownloadForm">Submit and Download</button>
+          <button class="button button-primary" type="submit" id="submitWaitlistForm">Join Waitlist</button>
         </div>
 
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
