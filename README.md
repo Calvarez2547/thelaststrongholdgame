@@ -1,23 +1,23 @@
 # The Last Stronghold Game Website
 
-This project is a clean, beginner-friendly single-page website for your school capstone game, **The Last Stronghold**. It uses plain HTML, plain CSS, vanilla JavaScript, a Cloudflare Pages Function for the waitlist backend, and Supabase for storing waitlist signups.
+This project is a clean, beginner-friendly single-page website for your school capstone game, **The Last Stronghold**. It uses plain HTML, plain CSS, vanilla JavaScript, a Cloudflare Pages Function for the download backend, and Supabase for storing download requests.
 
 ## Project structure
 
 `index.html`  
-Main single-page website with the sticky navigation, hero section, story section, documentation section, footer, and waitlist modal.
+Main single-page website with the sticky navigation, hero section, story section, documentation section, footer, and download modal.
 
 `styles.css`  
 All layout, colors, spacing, responsive design, and visual styling for the website.
 
 `script.js`  
-Handles the mobile menu, smooth single-page behavior, media/documentation card rendering, trailer sound toggle, form validation, and the API call to `/api/waitlist`.
+Handles the mobile menu, smooth single-page behavior, media/documentation card rendering, trailer sound toggle, form validation, and the API call to `/api/download`.
 
-`functions/api/waitlist.js`  
-Cloudflare Pages Function backend endpoint. It validates the form data, writes the record to Supabase, and returns a success response.
+`functions/api/download.js`  
+Cloudflare Pages Function backend endpoint. It validates the form data, writes the record to Supabase, and returns the game download URL.
 
 `supabase/schema.sql`  
-SQL script to create the `waitlist_signups` table and indexes in Supabase.
+SQL script to create the `downloads` table and indexes in Supabase.
 
 `assets/images/`  
 Placeholder image files for the hero banner, screenshots, promotional art, gallery items, and poster.
@@ -47,15 +47,15 @@ Add your real trailer and gameplay MP4 files.
 `assets/docs/`  
 Add your real SDS, SRS, proposal, and other PDF files.
 
-## How the waitlist flow works
+## How the download flow works
 
-1. The user clicks **Join the Waitlist**.
-2. The modal form asks for full name, email, and waitlist consent.
+1. The user clicks **Download Game**.
+2. The modal form asks for full name, email, and date of birth.
 3. The frontend validates the fields before sending anything.
-4. The request goes to `POST /api/waitlist`.
+4. The request goes to `POST /api/download`.
 5. The backend validates the data again.
-6. If the request is valid, the backend inserts the record into the Supabase `waitlist_signups` table.
-7. The backend returns a JSON success response.
+6. If the request is valid, the backend inserts the record into the Supabase `downloads` table.
+7. The backend returns the game download URL, and the browser navigates to it.
 
 ## Supabase setup
 
@@ -63,7 +63,7 @@ Add your real SDS, SRS, proposal, and other PDF files.
 2. Open the **SQL Editor** in Supabase.
 3. Open `supabase/schema.sql` in this project.
 4. Copy the SQL into the Supabase editor and run it.
-5. Confirm the `waitlist_signups` table was created in the `public` schema.
+5. Confirm the `downloads` table was created in the `public` schema.
 
 ### Required table columns
 
@@ -72,6 +72,7 @@ The SQL file creates:
 - `id`
 - `name`
 - `email`
+- `dob`
 - `created_at`
 
 ### Important database note
@@ -101,7 +102,7 @@ You have two simple options:
 
 Open `index.html` in a browser, or use the VS Code **Live Server** extension if you want a cleaner local preview.
 
-This is enough to test the layout and design, but the waitlist API will not work by itself in a plain file preview.
+This is enough to test the layout and design, but the download API will not work by itself in a plain file preview.
 
 ### Option 2: Full Cloudflare Pages local development
 
@@ -111,7 +112,7 @@ This is enough to test the layout and design, but the waitlist API will not work
    - `SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
 
-This option is best because it runs the static site and the `/api/waitlist` Pages Function together.
+This option is best because it runs the static site and the `/api/download` Pages Function together.
 
 ## How to deploy to Cloudflare Pages
 

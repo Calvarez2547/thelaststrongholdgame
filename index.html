@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="The Last Stronghold is a third-person action tower defense capstone game with story, media, documentation, and a beta waitlist signup."
+    content="The Last Stronghold is a third-person action tower defense capstone game with story, media, documentation, and a game download form."
   >
   <title>The Last Stronghold</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,7 @@
       </button>
       <div class="nav-menu" id="navMenu">
         <a class="nav-link" href="#home">Home</a>
-        <a class="nav-link" href="#waitlist">Waitlist</a>
+        <a class="nav-link" href="#download">Download</a>
         <a class="nav-link" href="#story">Story</a>
         <a class="nav-link" href="#documentation">Documentation</a>
       </div>
@@ -56,20 +56,20 @@
             class="hero-title-art"
           >
           <h1 class="sr-only">The Last Stronghold</h1>
-          <p class="hero-subtitle">Beta waitlist / School capstone project / Desktop and mobile friendly</p>
+          <p class="hero-subtitle">Download available / School capstone project / Desktop and mobile friendly</p>
           <p class="hero-description">
             The Last Stronghold is a dark fantasy third-person action tower defense game where the player must defend
             a powerful obelisk against relentless enemy waves, hold the line with arcane weapons, and survive long
             enough to keep the last source of power from falling.
           </p>
           <ul class="hero-highlights" aria-label="Game highlights">
-            <li>Join the beta waitlist for release updates</li>
+            <li>Download the playable game build</li>
             <li>Follow development progress and showcase milestones</li>
             <li>Arcane combat, obelisk defense, and wave survival</li>
           </ul>
           <div class="hero-actions">
-            <button class="button button-primary" id="openWaitlistModal" type="button">
-              Join the Waitlist
+            <button class="button button-primary" id="openDownloadModal" type="button">
+              Download Game
             </button>
             <a class="button button-secondary" href="#story">Explore Story</a>
           </div>
@@ -136,24 +136,23 @@
       </div>
     </section>
 
-    <!-- Waitlist section -->
-    <section class="download-section section" id="waitlist">
+    <!-- Download section -->
+    <section class="download-section section" id="download">
       <div class="container download-layout">
         <article class="card download-intro-card">
-          <p class="eyebrow">Beta Waitlist</p>
-          <h2>Join the Waitlist</h2>
+          <p class="eyebrow">Game Download</p>
+          <h2>Download The Last Stronghold</h2>
           <p>
-            Sign up to hear when the beta is ready, see major project updates, and follow the capstone as it moves
-            toward a playable release.
+            Fill out the short download form to get the current playable build of The Last Stronghold.
           </p>
           <ul class="download-notes">
-            <li>Simple email signup</li>
-            <li>Beta availability announcements</li>
-            <li>Project milestone updates</li>
+            <li>Playable game build download</li>
+            <li>Simple name and email form</li>
+            <li>Date of birth included for download records</li>
             <li>Built for desktop and mobile browsers</li>
           </ul>
-          <button class="button button-primary" id="openWaitlistModalSecondary" type="button">
-            Open Signup Form
+          <button class="button button-primary" id="openDownloadModalSecondary" type="button">
+            Open Download Form
           </button>
         </article>
 
@@ -165,10 +164,9 @@
             class="download-preview-image"
           >
           <div class="download-preview-copy">
-            <h3>Stay close to the stronghold</h3>
+            <h3>Take the stronghold with you</h3>
             <p>
-              The waitlist keeps interested players connected to new footage, progress updates, and the next step in
-              the game's release journey.
+              The download form records each request, then sends players directly to the hosted game file.
             </p>
           </div>
         </aside>
@@ -291,7 +289,7 @@
     <div class="container footer-content">
       <div>
         <p class="footer-title">The Last Stronghold</p>
-        <p class="footer-copy">Beta school project website for The Last Stronghold.</p>
+        <p class="footer-copy">Downloadable school project website for The Last Stronghold.</p>
       </div>
       <div class="footer-meta">
         <a href="#home">Back to top</a>
@@ -300,21 +298,21 @@
     </div>
   </footer>
 
-  <!-- Waitlist modal -->
-  <div class="modal" id="waitlistModal" aria-hidden="true" role="dialog" aria-labelledby="waitlistModalTitle">
+  <!-- Download modal -->
+  <div class="modal" id="downloadModal" aria-hidden="true" role="dialog" aria-labelledby="downloadModalTitle">
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-panel">
-      <button class="modal-close" id="closeWaitlistModal" type="button" aria-label="Close waitlist form">X</button>
+      <button class="modal-close" id="closeDownloadModal" type="button" aria-label="Close download form">X</button>
 
       <div class="modal-header">
-        <p class="eyebrow">Beta Waitlist</p>
-        <h2 id="waitlistModalTitle">Join the Waitlist</h2>
+        <p class="eyebrow">Game Download</p>
+        <h2 id="downloadModalTitle">Download The Last Stronghold</h2>
         <p>
-          Share your name and email to stay in the loop for beta availability, progress updates, and launch news.
+          Share your name, email, and date of birth to continue to the game download.
         </p>
       </div>
 
-      <form id="waitlistForm" class="download-form" novalidate>
+      <form id="downloadForm" class="download-form" novalidate>
         <label>
           Full name
           <input type="text" id="fullName" name="name" autocomplete="name" required>
@@ -325,17 +323,17 @@
           <input type="email" id="email" name="email" autocomplete="email" required>
         </label>
 
-        <p class="form-disclaimer">
-          We’ll only use your information for waitlist updates related to The Last Stronghold.
-        </p>
-
-        <label class="checkbox-field">
-          <input type="checkbox" id="waitlistConsent" name="waitlistConsent" required>
-          <span>I agree to join the waitlist and receive updates about The Last Stronghold.</span>
+        <label>
+          Date of birth
+          <input type="date" id="dob" name="dob" required>
         </label>
 
+        <p class="form-disclaimer">
+          We'll only use your information to record this download request for The Last Stronghold.
+        </p>
+
         <div class="form-actions">
-          <button class="button button-primary" type="submit" id="submitWaitlistForm">Join Waitlist</button>
+          <button class="button button-primary" type="submit" id="submitDownloadForm">Download Game</button>
         </div>
 
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>

@@ -134,15 +134,14 @@ const navLinks = document.querySelectorAll(".nav-link");
 const trailerVideo = document.getElementById("trailerVideo");
 const trailerFallback = document.getElementById("trailerFallback");
 const soundToggle = document.getElementById("soundToggle");
-const waitlistModal = document.getElementById("waitlistModal");
-const openWaitlistModal = document.getElementById("openWaitlistModal");
-const openWaitlistModalSecondary = document.getElementById("openWaitlistModalSecondary");
-const closeWaitlistModal = document.getElementById("closeWaitlistModal");
-const waitlistForm = document.getElementById("waitlistForm");
+const downloadModal = document.getElementById("downloadModal");
+const openDownloadModal = document.getElementById("openDownloadModal");
+const openDownloadModalSecondary = document.getElementById("openDownloadModalSecondary");
+const closeDownloadModal = document.getElementById("closeDownloadModal");
+const downloadForm = document.getElementById("downloadForm");
 const formStatus = document.getElementById("formStatus");
-const submitButton = document.getElementById("submitWaitlistForm");
-const waitlistConsentInput = document.getElementById("waitlistConsent");
-const submitButtonDefaultText = submitButton ? submitButton.textContent : "Join Waitlist";
+const submitButton = document.getElementById("submitDownloadForm");
+const submitButtonDefaultText = submitButton ? submitButton.textContent : "Download Game";
 
 function safePath(path) {
   // Encodes spaces safely so files like "Game Title.png" still work in the browser.
@@ -241,16 +240,16 @@ function updateActiveNav() {
 }
 
 function openModal() {
-  waitlistModal.classList.add("is-open");
-  waitlistModal.setAttribute("aria-hidden", "false");
+  downloadModal.classList.add("is-open");
+  downloadModal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   formStatus.textContent = "";
   document.getElementById("fullName").focus();
 }
 
 function closeModal() {
-  waitlistModal.classList.remove("is-open");
-  waitlistModal.setAttribute("aria-hidden", "true");
+  downloadModal.classList.remove("is-open");
+  downloadModal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
@@ -263,12 +262,12 @@ function setStatus(message, state = "") {
   }
 }
 
-function validateWaitlistForm(formData) {
+function validateDownloadForm(formData) {
   const name = formData.get("name").toString().trim();
   const email = formData.get("email").toString().trim();
-  const waitlistConsent = formData.get("waitlistConsent") === "on";
+  const dob = formData.get("dob").toString().trim();
 
-  if (!name || !email) {
+  if (!name || !email || !dob) {
     return "Please complete all required fields.";
   }
 
@@ -278,14 +277,14 @@ function validateWaitlistForm(formData) {
     return "Please enter a valid email address.";
   }
 
-  if (!waitlistConsent) {
-    return "Please confirm that you want to join the waitlist.";
+  if (Number.isNaN(Date.parse(`${dob}T00:00:00`))) {
+    return "Please enter a valid date of birth.";
   }
 
   return "";
 }
 
-async function handleWaitlistSubmit(event) {
+async function handleDownloadSubmit(event) {
   event.preventDefault();
 
   // Stop accidental double-click submits while the current request is still running.
@@ -293,8 +292,8 @@ async function handleWaitlistSubmit(event) {
     return;
   }
 
-  const formData = new FormData(waitlistForm);
-  const validationMessage = validateWaitlistForm(formData);
+  const formData = new FormData(downloadForm);
+  const validationMessage = validateDownloadForm(formData);
 
   if (validationMessage) {
     setStatus(validationMessage, "error");
@@ -302,17 +301,17 @@ async function handleWaitlistSubmit(event) {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "Saving Your Spot...";
-  setStatus("Saving your waitlist signup...", "");
+  submitButton.textContent = "Preparing Download...";
+  setStatus("Saving your download request...", "");
 
   const payload = {
     name: formData.get("name").toString().trim(),
     email: formData.get("email").toString().trim(),
-    waitlistConsent: formData.get("waitlistConsent") === "on"
+    dob: formData.get("dob").toString().trim()
   };
 
   try {
-    const response = await fetch("/api/waitlist", {
+    const response = await fetch("/api/download", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -323,15 +322,19 @@ async function handleWaitlistSubmit(event) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.error || "The waitlist request could not be completed.");
+      throw new Error(result.error || "The download request could not be completed.");
     }
 
-    setStatus("You're on the waitlist. We'll keep you posted.", "success");
-    waitlistForm.reset();
+    if (!result.downloadUrl) {
+      throw new Error("The download link was not returned.");
+    }
+
+    setStatus("Your download is starting.", "success");
+    downloadForm.reset();
 
     window.setTimeout(() => {
-      closeModal();
-    }, 1200);
+      window.location.href = result.downloadUrl;
+    }, 500);
   } catch (error) {
     setStatus(error.message, "error");
   } finally {
@@ -359,13 +362,13 @@ function setupTrailer() {
 }
 
 function setupModal() {
-  openWaitlistModal.addEventListener("click", openModal);
-  if (openWaitlistModalSecondary) {
-    openWaitlistModalSecondary.addEventListener("click", openModal);
+  openDownloadModal.addEventListener("click", openModal);
+  if (openDownloadModalSecondary) {
+    openDownloadModalSecondary.addEventListener("click", openModal);
   }
-  closeWaitlistModal.addEventListener("click", closeModal);
+  closeDownloadModal.addEventListener("click", closeModal);
 
-  waitlistModal.addEventListener("click", (event) => {
+  downloadModal.addEventListener("click", (event) => {
     const target = event.target;
 
     if (target instanceof HTMLElement && target.dataset.closeModal === "true") {
@@ -374,7 +377,7 @@ function setupModal() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && waitlistModal.classList.contains("is-open")) {
+    if (event.key === "Escape" && downloadModal.classList.contains("is-open")) {
       closeModal();
     }
   });
@@ -400,7 +403,7 @@ function setupNavigation() {
 
 function init() {
   // Exit early if the page structure is incomplete during local edits.
-  if (!gameplayGallery || !promoGallery || !extraGallery || !docsGrid || !waitlistForm || !waitlistConsentInput) {
+  if (!gameplayGallery || !promoGallery || !extraGallery || !docsGrid || !downloadForm) {
     return;
   }
 
@@ -411,7 +414,7 @@ function init() {
   setupTrailer();
   setupModal();
   setupNavigation();
-  waitlistForm.addEventListener("submit", handleWaitlistSubmit);
+  downloadForm.addEventListener("submit", handleDownloadSubmit);
 }
 
 init();
